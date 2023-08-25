@@ -5,7 +5,7 @@
 -- Dumped from database version 15.1
 -- Dumped by pg_dump version 15.1
 
--- Started on 2023-08-25 11:10:26
+-- Started on 2023-08-25 13:09:11
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -82,12 +82,12 @@ ALTER TABLE public.local OWNER TO postgres;
 
 CREATE TABLE public.medicos (
                                 id bigint NOT NULL,
-                                crm bigint NOT NULL,
-                                "user" bigint NOT NULL,
+                                users bigint NOT NULL,
                                 created date NOT NULL,
                                 updated date,
                                 especialidade bigint NOT NULL,
-                                actived boolean NOT NULL
+                                actived boolean NOT NULL,
+                                crm character varying(255) NOT NULL
 );
 
 
@@ -269,6 +269,7 @@ COPY public.consultas (id, data, medico, local, actived, created, updated) FROM 
 --
 
 COPY public.especialidades (id, especialidade, actived, created, updated) FROM stdin;
+2	string111	t	2023-08-25	2023-08-25
 \.
 
 
@@ -279,6 +280,7 @@ COPY public.especialidades (id, especialidade, actived, created, updated) FROM s
 --
 
 COPY public.local (id, rua, bairro, numero, nome_local, actived, created, updated) FROM stdin;
+1	string11	string11	strin111g	str11ing	t	2023-08-25	2023-08-25
 \.
 
 
@@ -288,7 +290,9 @@ COPY public.local (id, rua, bairro, numero, nome_local, actived, created, update
 -- Data for Name: medicos; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-COPY public.medicos (id, crm, "user", created, updated, especialidade, actived) FROM stdin;
+COPY public.medicos (id, users, created, updated, especialidade, actived, crm) FROM stdin;
+4	2	2023-09-09	2023-09-09	2	t	dsadsadsa
+8	2	2023-08-25	2023-08-25	2	t	aaaaaa
 \.
 
 
@@ -330,7 +334,7 @@ SELECT pg_catalog.setval('public.sequence_id_consulta', 1, false);
 -- Name: sequence_id_espec; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sequence_id_espec', 1, false);
+SELECT pg_catalog.setval('public.sequence_id_espec', 2, true);
 
 
 --
@@ -339,7 +343,7 @@ SELECT pg_catalog.setval('public.sequence_id_espec', 1, false);
 -- Name: sequence_id_local; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sequence_id_local', 1, false);
+SELECT pg_catalog.setval('public.sequence_id_local', 1, true);
 
 
 --
@@ -348,7 +352,7 @@ SELECT pg_catalog.setval('public.sequence_id_local', 1, false);
 -- Name: sequence_id_medico; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sequence_id_medico', 1, false);
+SELECT pg_catalog.setval('public.sequence_id_medico', 8, true);
 
 
 --
@@ -456,7 +460,7 @@ ALTER TABLE ONLY public.medicos
 --
 
 ALTER TABLE ONLY public.medicos
-    ADD CONSTRAINT fk_medico_user FOREIGN KEY ("user") REFERENCES public.users(id);
+    ADD CONSTRAINT fk_medico_user FOREIGN KEY (users) REFERENCES public.users(id);
 
 
 --
@@ -468,7 +472,7 @@ ALTER TABLE ONLY public.users
     ADD CONSTRAINT fk_role FOREIGN KEY (role) REFERENCES public.roles(id) NOT VALID;
 
 
--- Completed on 2023-08-25 11:10:26
+-- Completed on 2023-08-25 13:09:12
 
 --
 -- PostgreSQL database dump complete
