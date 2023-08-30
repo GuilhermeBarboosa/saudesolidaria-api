@@ -45,4 +45,10 @@ public class LocalService {
         local.setActived(false);
         return localRepository.save(local);
     }
+
+    public Local activatedById(Long id) {
+        Local local = findById(id);
+        local.setActived(true);
+        return localRepository.save(local);
+    }
 }

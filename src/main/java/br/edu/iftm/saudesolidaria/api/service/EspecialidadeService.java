@@ -1,6 +1,7 @@
 package br.edu.iftm.saudesolidaria.api.service;
 
 import br.edu.iftm.saudesolidaria.model.entity.Especialidade;
+import br.edu.iftm.saudesolidaria.model.entity.Local;
 import br.edu.iftm.saudesolidaria.model.input.EspecialidadeInput;
 import br.edu.iftm.saudesolidaria.model.repository.EspecialidadeRepository;
 import br.edu.iftm.saudesolidaria.model.repository.UserRepository;
@@ -42,6 +43,12 @@ public class EspecialidadeService {
         Especialidade especialidade = findById(id);
         especialidade.setActived(false);
         return especialidadeRepository.save(especialidade);
+    }
+
+    public Especialidade activatedById(Long id) {
+        Especialidade espec = findById(id);
+        espec.setActived(true);
+        return especialidadeRepository.save(espec);
     }
 
 }

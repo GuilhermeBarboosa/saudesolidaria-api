@@ -2,8 +2,10 @@ package br.edu.iftm.saudesolidaria.api.controller;
 
 import br.edu.iftm.saudesolidaria.api.service.EspecialidadeService;
 import br.edu.iftm.saudesolidaria.model.entity.Especialidade;
+import br.edu.iftm.saudesolidaria.model.entity.Local;
 import br.edu.iftm.saudesolidaria.model.input.EspecialidadeInput;
 import br.edu.iftm.saudesolidaria.model.output.EspecialidadeOutput;
+import br.edu.iftm.saudesolidaria.model.output.LocalOutput;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,5 +62,12 @@ public class EspecialidadeController {
         Especialidade deactivatedEspecialidade = especialidadeService.deactivateById(id);
         EspecialidadeOutput especialidadeOutput = new EspecialidadeOutput(deactivatedEspecialidade);
         return ResponseEntity.ok(especialidadeOutput);
+    }
+
+    @PutMapping("/ativar/{id}")
+    public ResponseEntity<?> activedById(@PathVariable Long id) {
+        Especialidade updatedEspecialidade = especialidadeService.activatedById(id);
+        EspecialidadeOutput especOutput = new EspecialidadeOutput(updatedEspecialidade);
+        return ResponseEntity.ok(especOutput);
     }
 }

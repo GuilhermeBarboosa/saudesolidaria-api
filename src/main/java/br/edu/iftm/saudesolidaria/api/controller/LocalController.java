@@ -54,11 +54,18 @@ public class LocalController {
         LocalOutput localOutput = new LocalOutput(updatedLocal);
         return ResponseEntity.ok(localOutput);
     }
-
     @DeleteMapping("/{id}")
     public ResponseEntity<LocalOutput> deactivateById(@PathVariable Long id) {
         Local deactivatedLocal = localService.deactivateById(id);
         LocalOutput localOutput = new LocalOutput(deactivatedLocal);
         return ResponseEntity.ok(localOutput);
     }
+
+    @PutMapping("/ativar/{id}")
+    public ResponseEntity<?> activedById(@PathVariable Long id) {
+        Local updatedLocal = localService.activatedById(id);
+        LocalOutput localOutput = new LocalOutput(updatedLocal);
+        return ResponseEntity.ok(localOutput);
+    }
+
 }
