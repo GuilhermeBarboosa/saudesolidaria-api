@@ -18,10 +18,12 @@ public class MedicoOutput extends DefaultEntityDTO {
     private Long id_user;
     private String nome_user;
     private String cpf_user;
+    private String email_user;
 
     private Long id_role;
     private String role;
 
+    private Long id_especialidade;
     private String especialidade;
 
     public MedicoOutput(Medico medico) {
@@ -32,7 +34,9 @@ public class MedicoOutput extends DefaultEntityDTO {
         this.cpf_user = medico.getUser().getCpf();
         this.id_role = medico.getUser().getRole().getId();
         this.role = medico.getUser().getRole().getRole();
+        this.id_especialidade = medico.getEspecialidade().getId();
         this.especialidade = medico.getEspecialidade().getEspecialidade();
+        this.email_user = medico.getUser().getEmail();
         this.setActived(medico.getActived());
         this.setCreated(medico.getCreated());
         this.setUpdated(medico.getUpdated());

@@ -1,8 +1,11 @@
 package br.edu.iftm.saudesolidaria.api.controller;
 
 import br.edu.iftm.saudesolidaria.api.service.MedicoService;
+import br.edu.iftm.saudesolidaria.api.service.UserService;
 import br.edu.iftm.saudesolidaria.model.entity.Medico;
+import br.edu.iftm.saudesolidaria.model.entity.User;
 import br.edu.iftm.saudesolidaria.model.input.MedicoInput;
+import br.edu.iftm.saudesolidaria.model.input.UserInput;
 import br.edu.iftm.saudesolidaria.model.output.MedicoOutput;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -24,8 +27,14 @@ public class MedicoController {
     @Autowired
     private final MedicoService medicoService;
 
+    @Autowired
+    private final UserService userService;
+
     @PostMapping
     public ResponseEntity<?> save(@Valid @RequestBody MedicoInput medicoInput) {
+        UserInput user = new UserInput(medicoInput.getNome(), medicoInput.getCpf(), medicoInput.getEmail(), medicoInput.getSenha(), medicoInput.getRole());
+        User userCreated = userService.save(user);
+        medicoInput.setId_user(userCreated.getId());
         Medico createdMedico = medicoService.save(medicoInput);
         MedicoOutput medicoOutput = new MedicoOutput(createdMedico);
         return ResponseEntity.ok(medicoOutput);

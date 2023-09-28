@@ -25,7 +25,7 @@ public class MedicoService {
 
     public Medico save(MedicoInput medicoInput) {
         Medico medico = modelMapper.map(medicoInput, Medico.class);
-        medico.setUser(userService.findById(medicoInput.getUser()));
+        medico.setUser(userService.findById(medicoInput.getId_user()));
         medico.setEspecialidade(especialidadeService.findById(medicoInput.getEspecialidade()));
         System.out.println(medico.toString());
         return medicoRepository.save(medico);
@@ -44,7 +44,7 @@ public class MedicoService {
 
         medico.setCrm(medicoInput.getCrm());
         medico.setEspecialidade(especialidadeService.findById(medicoInput.getEspecialidade()));
-        medico.setUser(userService.findById(medicoInput.getUser()));
+        medico.setUser(userService.findById(medicoInput.getId_user()));
 
         return medicoRepository.save(medico);
 
