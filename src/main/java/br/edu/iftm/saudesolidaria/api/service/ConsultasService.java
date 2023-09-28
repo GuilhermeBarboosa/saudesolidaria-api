@@ -1,6 +1,7 @@
 package br.edu.iftm.saudesolidaria.api.service;
 
 import br.edu.iftm.saudesolidaria.model.entity.Consultas;
+import br.edu.iftm.saudesolidaria.model.entity.Especialidade;
 import br.edu.iftm.saudesolidaria.model.input.ConsultasInput;
 import br.edu.iftm.saudesolidaria.model.repository.ConsultasRepository;
 import lombok.RequiredArgsConstructor;
@@ -47,5 +48,11 @@ public class ConsultasService {
         Consultas consultas = findById(id);
         consultas.setActived(false);
         return consultasRepository.save(consultas);
+    }
+
+    public Consultas activatedById(Long id) {
+        Consultas consulta = findById(id);
+        consulta.setActived(true);
+        return consultasRepository.save(consulta);
     }
 }

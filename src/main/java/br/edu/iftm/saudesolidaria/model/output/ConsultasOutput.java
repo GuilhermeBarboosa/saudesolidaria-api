@@ -18,6 +18,7 @@ public class ConsultasOutput extends DefaultEntityDTO {
     private String crm;
     private String nome_medico;
     private String cpf_medico;
+    private String especialidade;
 
     private Long id_local;
     private String rua;
@@ -36,6 +37,7 @@ public class ConsultasOutput extends DefaultEntityDTO {
         this.rua = consulta.getLocal().getRua();
         this.bairro = consulta.getLocal().getBairro();
         this.numero = consulta.getLocal().getNumero();
+        this.especialidade = consulta.getMedico().getEspecialidade().getEspecialidade();
         this.nome_local = consulta.getLocal().getNome_local();
         this.setActived(consulta.getActived());
         this.setCreated(consulta.getCreated());
