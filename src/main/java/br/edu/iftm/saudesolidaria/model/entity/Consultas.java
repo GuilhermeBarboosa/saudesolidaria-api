@@ -19,11 +19,10 @@ import java.util.Date;
 public class Consultas extends DefaultEntity implements Serializable {
 
     @Id
-    @SequenceGenerator(name="gerador5", sequenceName="sequence_id_consultas", allocationSize=1)
+    @SequenceGenerator(name="gerador5", sequenceName="sequence_id_consulta", allocationSize=1)
     @GeneratedValue(generator="gerador5", strategy=GenerationType.SEQUENCE)
     private Long id;
 
-    @Size(max = 255)
     @NotNull
     @Column(name = "data", nullable = false)
     private Date data;

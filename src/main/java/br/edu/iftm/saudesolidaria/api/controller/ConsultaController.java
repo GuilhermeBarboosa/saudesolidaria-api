@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.text.ParseException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,7 +26,8 @@ public class ConsultaController {
     private final ConsultasService consultaService;
 
     @PostMapping
-    public ResponseEntity<?> save(@Valid @RequestBody ConsultasInput consultaInput) {
+    public ResponseEntity<?> save(@Valid @RequestBody ConsultasInput consultaInput) throws ParseException {
+        System.out.println(consultaInput.toString());
         Consultas createdConsulta = consultaService.save(consultaInput);
         ConsultasOutput consultaOutput = new ConsultasOutput(createdConsulta);
         return ResponseEntity.ok(consultaOutput);

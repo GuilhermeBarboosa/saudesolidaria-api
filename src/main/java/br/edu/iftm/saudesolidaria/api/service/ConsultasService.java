@@ -25,6 +25,8 @@ public class ConsultasService {
 
     public Consultas save(ConsultasInput consultasInput) {
         Consultas consultas = modelMapper.map(consultasInput, Consultas.class);
+        consultas.setMedico(medicoService.findById(consultasInput.getMedico()));
+        consultas.setLocal(localService.findById(consultasInput.getLocal()));
         return consultasRepository.save(consultas);
     }
 
