@@ -27,7 +27,6 @@ public class MedicoService {
         Medico medico = modelMapper.map(medicoInput, Medico.class);
         medico.setUser(userService.findById(medicoInput.getId_user()));
         medico.setEspecialidade(especialidadeService.findById(medicoInput.getEspecialidade()));
-        System.out.println(medico.toString());
         return medicoRepository.save(medico);
     }
 
