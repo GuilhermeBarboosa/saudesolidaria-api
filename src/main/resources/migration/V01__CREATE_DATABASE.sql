@@ -5,7 +5,7 @@
 -- Dumped from database version 15.1
 -- Dumped by pg_dump version 15.1
 
--- Started on 2023-08-25 13:09:11
+-- Started on 2023-10-18 13:05:43
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -122,15 +122,6 @@ CREATE SEQUENCE public.sequence_id_consulta
 ALTER TABLE public.sequence_id_consulta OWNER TO postgres;
 
 --
--- TOC entry 3374 (class 0 OID 0)
--- Dependencies: 220
--- Name: sequence_id_consulta; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
---
-
-ALTER SEQUENCE public.sequence_id_consulta OWNED BY public.consultas.id;
-
-
---
 -- TOC entry 219 (class 1259 OID 26682)
 -- Name: sequence_id_espec; Type: SEQUENCE; Schema: public; Owner: postgres
 --
@@ -146,7 +137,7 @@ CREATE SEQUENCE public.sequence_id_espec
 ALTER TABLE public.sequence_id_espec OWNER TO postgres;
 
 --
--- TOC entry 3375 (class 0 OID 0)
+-- TOC entry 3374 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: sequence_id_espec; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -170,7 +161,7 @@ CREATE SEQUENCE public.sequence_id_local
 ALTER TABLE public.sequence_id_local OWNER TO postgres;
 
 --
--- TOC entry 3376 (class 0 OID 0)
+-- TOC entry 3375 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: sequence_id_local; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -194,7 +185,7 @@ CREATE SEQUENCE public.sequence_id_medico
 ALTER TABLE public.sequence_id_medico OWNER TO postgres;
 
 --
--- TOC entry 3377 (class 0 OID 0)
+-- TOC entry 3376 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: sequence_id_medico; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
@@ -259,6 +250,9 @@ ALTER TABLE public.users OWNER TO postgres;
 --
 
 COPY public.consultas (id, data, medico, local, actived, created, updated) FROM stdin;
+1	2023-12-07	4	1	t	2023-09-09	2023-10-03
+23	2023-11-23	4	1	t	2023-09-29	2023-10-03
+24	2023-11-05	18	1	t	2023-10-04	2023-10-04
 \.
 
 
@@ -269,7 +263,8 @@ COPY public.consultas (id, data, medico, local, actived, created, updated) FROM 
 --
 
 COPY public.especialidades (id, especialidade, actived, created, updated) FROM stdin;
-2	string111	t	2023-08-25	2023-08-25
+2	Cardiologia	t	2023-08-25	2023-08-30
+11	Clinico Geral	t	2023-08-29	2023-08-29
 \.
 
 
@@ -280,7 +275,8 @@ COPY public.especialidades (id, especialidade, actived, created, updated) FROM s
 --
 
 COPY public.local (id, rua, bairro, numero, nome_local, actived, created, updated) FROM stdin;
-1	string11	string11	strin111g	str11ing	t	2023-08-25	2023-08-25
+6	Sebastião	Centro	344	Saint-Perè	t	2023-08-30	2023-08-30
+1	Rua Princesa do Sertão	Vila Maria Helena	246	Clinica Santa Fé	t	2023-08-25	2023-10-04
 \.
 
 
@@ -291,8 +287,9 @@ COPY public.local (id, rua, bairro, numero, nome_local, actived, created, update
 --
 
 COPY public.medicos (id, users, created, updated, especialidade, actived, crm) FROM stdin;
-4	2	2023-09-09	2023-09-09	2	t	dsadsadsa
-8	2	2023-08-25	2023-08-25	2	t	aaaaaa
+4	2	2023-09-09	2023-09-09	2	t	197344-MG
+18	10	2023-10-04	2023-10-04	2	t	243224-MG
+19	11	2023-10-04	2023-10-04	11	t	15156-MG
 \.
 
 
@@ -314,49 +311,51 @@ COPY public.roles (id, role) FROM stdin;
 --
 
 COPY public.users (id, email, senha, nome, role, cpf, actived, created, updated) FROM stdin;
-2	gui@gmail.com	$2a$10$nFym4ZQawff9yNfJ4Jni/u7kLjfQRDp9fKMfP2idukB8VXmM0qzdq	gui	1	019.567.234-54	t	2023-08-22	2023-08-22
-1	root@email.com	$2a$10$nFym4ZQawff9yNfJ4Jni/u7kLjfQRDp9fKMfP2idukB8VXmM0qzdq	root	1	019.733.945-96	t	2023-05-05	2023-05-05
+1	root@email.com	$2a$12$wts7w0pA6qdrWqjDPPwCbe5i63kZE8XwbDbz8iCYy2oVhtjUXNj4W	root	1	019.733.945-96	t	2023-05-05	2023-05-05
+2	jose@gmail.com	$2a$10$nFym4ZQawff9yNfJ4Jni/u7kLjfQRDp9fKMfP2idukB8VXmM0qzdq	José	1	019.567.234-54	t	2023-08-22	2023-08-22
+10	carlos@gmail.com	$2a$10$Cg0bX7i6uVmxm0NzXpatJuAb1epDpQ7HR6I8l4l77VSB6nscBg/GS	Carlos	1	054.515.652-62	t	2023-10-04	2023-10-04
+11	teste1@gmail.com	$2a$10$ZUQWRTQI/IQ43BpimpRHeOKFBJRcZ3VvrRi3WoCMKENI1yWV22oWq	teste1	1	016.166.262-66	t	2023-10-04	2023-10-04
 \.
 
 
 --
--- TOC entry 3378 (class 0 OID 0)
+-- TOC entry 3377 (class 0 OID 0)
 -- Dependencies: 220
 -- Name: sequence_id_consulta; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sequence_id_consulta', 1, false);
+SELECT pg_catalog.setval('public.sequence_id_consulta', 24, true);
 
 
 --
--- TOC entry 3379 (class 0 OID 0)
+-- TOC entry 3378 (class 0 OID 0)
 -- Dependencies: 219
 -- Name: sequence_id_espec; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sequence_id_espec', 2, true);
+SELECT pg_catalog.setval('public.sequence_id_espec', 11, true);
 
 
 --
--- TOC entry 3380 (class 0 OID 0)
+-- TOC entry 3379 (class 0 OID 0)
 -- Dependencies: 221
 -- Name: sequence_id_local; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sequence_id_local', 1, true);
+SELECT pg_catalog.setval('public.sequence_id_local', 6, true);
 
 
 --
--- TOC entry 3381 (class 0 OID 0)
+-- TOC entry 3380 (class 0 OID 0)
 -- Dependencies: 218
 -- Name: sequence_id_medico; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sequence_id_medico', 8, true);
+SELECT pg_catalog.setval('public.sequence_id_medico', 19, true);
 
 
 --
--- TOC entry 3382 (class 0 OID 0)
+-- TOC entry 3381 (class 0 OID 0)
 -- Dependencies: 217
 -- Name: sequence_id_role; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
@@ -365,12 +364,12 @@ SELECT pg_catalog.setval('public.sequence_id_role', 1, false);
 
 
 --
--- TOC entry 3383 (class 0 OID 0)
+-- TOC entry 3382 (class 0 OID 0)
 -- Dependencies: 216
 -- Name: sequence_id_user; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.sequence_id_user', 2, true);
+SELECT pg_catalog.setval('public.sequence_id_user', 11, true);
 
 
 --
@@ -472,7 +471,7 @@ ALTER TABLE ONLY public.users
     ADD CONSTRAINT fk_role FOREIGN KEY (role) REFERENCES public.roles(id) NOT VALID;
 
 
--- Completed on 2023-08-25 13:09:12
+-- Completed on 2023-10-18 13:05:43
 
 --
 -- PostgreSQL database dump complete
